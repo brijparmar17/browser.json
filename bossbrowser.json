@@ -1,0 +1,127 @@
+{
+    "application": {
+      "name": "Boss Browser",
+      "version": "1.0",
+      "components": [
+        {
+          "type": "QMainWindow",
+          "name": "Window",
+          "settings": {
+            "centralWidget": {
+              "type": "QWebEngineView",
+              "url": "https://www.google.com",
+              "signals": {
+                "urlChanged": "update_AddressBar"
+              }
+            },
+            "statusBar": {
+              "type": "QStatusBar"
+            },
+            "navigationBar": {
+              "type": "QToolBar",
+              "name": "Navigation Toolbar",
+              "actions": [
+                {
+                  "type": "QAction",
+                  "text": "Back",
+                  "statusTip": "Go to previous page you visited",
+                  "triggered": "browser.back"
+                },
+                {
+                  "type": "QAction",
+                  "text": "Refresh",
+                  "statusTip": "Refresh this page",
+                  "triggered": "browser.reload"
+                },
+                {
+                  "type": "QAction",
+                  "text": "Next",
+                  "statusTip": "Go to next page",
+                  "triggered": "browser.forward"
+                },
+                {
+                  "type": "QAction",
+                  "text": "Home",
+                  "statusTip": "Go to home page (Google page)",
+                  "triggered": "go_to_home"
+                }
+              ],
+              "widgets": [
+                {
+                  "type": "QLineEdit",
+                  "name": "URLBar",
+                  "signals": {
+                    "returnPressed": "go_to_URL"
+                  }
+                }
+              ]
+            },
+            "bookmarksToolbar": {
+              "type": "QToolBar",
+              "name": "Bookmarks",
+              "actions": [
+                {
+                  "type": "QAction",
+                  "text": "Facebook",
+                  "statusTip": "Go to Facebook",
+                  "triggered": "go_to_URL",
+                  "url": "https://www.facebook.com"
+                },
+                {
+                  "type": "QAction",
+                  "text": "LinkedIn",
+                  "statusTip": "Go to LinkedIn",
+                  "triggered": "go_to_URL",
+                  "url": "https://in.linkedin.com"
+                },
+                {
+                  "type": "QAction",
+                  "text": "Instagram",
+                  "statusTip": "Go to Instagram",
+                  "triggered": "go_to_URL",
+                  "url": "https://www.instagram.com"
+                },
+                {
+                  "type": "QAction",
+                  "text": "Twitter",
+                  "statusTip": "Go to Twitter",
+                  "triggered": "go_to_URL",
+                  "url": "https://www.twitter.com"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "methods": [
+        {
+          "name": "go_to_home",
+          "description": "Sets the browser URL to Google's homepage."
+        },
+        {
+          "name": "go_to_URL",
+          "description": "Sets the browser URL to the specified QUrl, adding 'https' scheme if missing.",
+          "parameters": [
+            {
+              "name": "url",
+              "type": "QUrl"
+            }
+          ]
+        },
+        {
+          "name": "update_AddressBar",
+          "description": "Updates the URL bar with the current URL.",
+          "parameters": [
+            {
+              "name": "url",
+              "type": "QUrl"
+            }
+          ]
+        }
+      ]
+    },
+    "execution": {
+      "entryPoint": "app.exec_()",
+      "applicationName": "Boss Browser"
+    }
+  }  
